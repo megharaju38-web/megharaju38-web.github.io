@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Growing Stars | Live tutoring for grades 2 to 11</title>
+<meta name="description" content="Private tutoring for grades 2 to 11 by an experienced, MOHRE-licensed tutor. Live online classes or in person. CBSE, ICSE, British and American curriculum.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-1.1 -1.1 2.2 2.2'><path fill='%23FFC43D' d='M0,-1 L0.265,-0.364 L0.951,-0.309 L0.428,0.139 L0.588,0.809 L0,0.45 L-0.588,0.809 L-0.428,0.139 L-0.951,-0.309 L-0.265,-0.364Z'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #2B59E0;
+    --blue-deep: #1C3DAA;
+    --sun: #FFC43D;
+    --mint: #1FB386;
+    --pink: #FF6F9C;
+    --lilac: #8B6CF0;
+    --sky: #EEF3FF;
+    --paper: #FFFFFF;
+    --ink: #1B2240;
+    --muted: #56607D;
+    --line: #D8E0F3;
+    --wa: #157F46;
+    --t-sun: #FFF1CC; --t-mint: #D8F5EC; --t-pink: #FFE3EC; --t-lilac: #ECE6FF; --t-blue: #E0E9FF;
+    --display: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
+    --body: "Nunito", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1.0625rem; line-height: 1.6; }
+  img, svg { max-width: 100%; }
+  a { color: inherit; }
+  button { font: inherit; }
+  [hidden] { display: none !important; }
+  :focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.12; margin: 0; font-weight: 700; }
+  h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); color: var(--ink); }
+  .lede { color: var(--muted); max-width: 40rem; margin: .75rem 0 0; }
+  section { padding: 5rem 0; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; padding: .85rem 1.4rem; border-radius: 999px; font-weight: 800; text-decoration: none; font-size: 1rem; border: 2px solid transparent; cursor: pointer; }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  .btn-wa { background: var(--wa); color: #fff; }
+  .btn-wa:hover { background: #106838; }
+  .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.7); }
+  .btn-ghost:hover { background: rgba(255,255,255,.12); }
+  .btn-sun { background: var(--sun); color: var(--ink); }
+  .btn-sun:hover { background: #FFB60F; }
+  .btn-sun:disabled { background: #E9ECF5; color: #8A92AB; cursor: not-allowed; }
+  .btn-line { background: #fff; color: var(--ink); border-color: var(--line); }
+  .btn-line:hover { border-color: var(--ink); }
+  .btn-small { padding: .5rem 1rem; font-size: .95rem; }
+
+  /* Header */
+  header { background: var(--blue); color: #fff; }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 0; }
+  .logo { display: flex; align-items: center; gap: .55rem; text-decoration: none; font-family: var(--display); font-weight: 700; font-size: 1.4rem; }
+  .logo svg { width: 30px; height: 30px; }
+  nav ul { display: flex; gap: 1.6rem; list-style: none; margin: 0; padding: 0; font-weight: 600; }
+  nav a { text-decoration: none; }
+  nav a:hover { text-decoration: underline; text-decoration-color: var(--sun); text-decoration-thickness: 3px; text-underline-offset: 6px; }
+
+  /* Hero */
+  .hero { background: var(--blue); color: #fff; padding: 2rem 0 5rem; position: relative; overflow: hidden; }
+  .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 48px; background: var(--paper); border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 2.5rem; align-items: center; position: relative; z-index: 1; }
+  .credential { display: inline-block; font-size: .92rem; background: rgba(255,255,255,.12); border-radius: 12px; padding: .45rem .85rem; margin-bottom: 1.4rem; line-height: 1.45; }
+  .credential strong { color: var(--sun); }
+  .hero h1 { font-size: clamp(2.4rem, 5.6vw, 4rem); letter-spacing: -0.01em; }
+  .hero p { color: #E4EBFF; font-size: 1.15rem; max-width: 32rem; margin: 1.2rem 0 1.8rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .next-pill { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1.5rem; background: #fff; color: var(--ink); text-decoration: none; padding: .55rem 1rem .55rem .75rem; border-radius: 999px; font-weight: 700; font-size: .95rem; }
+  .next-pill .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--mint); }
+  .next-pill.is-live .dot { background: var(--pink); animation: pulse 1.4s infinite; }
+  .climb text { font-family: var(--display); font-weight: 600; font-size: 14px; fill: #C9D6FF; text-anchor: middle; }
+  .climb .caption { font-size: 15px; fill: #fff; text-anchor: start; }
+  .pop { transform-box: fill-box; transform-origin: center; animation: pop .5s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(var(--d) * 95ms + 200ms); }
+  @keyframes pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,111,156,.6); } 100% { box-shadow: 0 0 0 10px rgba(255,111,156,0); } }
+
+  /* Live classes */
+  .live-sec { padding-top: 3.5rem; }
+  .demo-note { margin-top: 1.25rem; background: var(--t-sun); border-radius: 12px; padding: .75rem 1rem; font-size: .95rem; max-width: 46rem; }
+  .live-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 2rem; margin-top: 2.25rem; align-items: start; }
+  .next-card { background: var(--ink); color: #fff; border-radius: 28px; padding: 2rem; position: relative; overflow: hidden; }
+  .next-card .corner-star { position: absolute; right: -24px; top: -24px; width: 130px; height: 130px; opacity: .9; }
+  .status { display: inline-flex; align-items: center; gap: .5rem; font-weight: 800; font-size: .9rem; padding: .3rem .8rem; border-radius: 999px; background: rgba(255,255,255,.12); }
+  .status .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--mint); }
+  .status.is-live { background: var(--pink); }
+  .status.is-live .dot { background: #fff; animation: pulse 1.4s infinite; }
+  .next-card h3 { font-size: 2rem; margin-top: 1rem; }
+  .next-card .meta { color: #C4CCE6; margin: .3rem 0 0; }
+  .next-card .note { background: rgba(255,255,255,.08); border-radius: 12px; padding: .6rem .85rem; margin: 1rem 0 0; font-size: .95rem; }
+  .countdown { display: flex; gap: .6rem; margin: 1.5rem 0; }
+  .countdown div { background: rgba(255,255,255,.1); border-radius: 14px; padding: .55rem .4rem; min-width: 4.2rem; text-align: center; }
+  .countdown b { display: block; font-family: var(--display); font-size: 2rem; line-height: 1.1; color: var(--sun); font-variant-numeric: tabular-nums; }
+  .countdown span { font-size: .8rem; color: #C4CCE6; }
+  .next-card .actions .btn-line { background: transparent; color: #fff; border-color: rgba(255,255,255,.4); }
+  .next-card .empty { color: #C4CCE6; margin: 1rem 0 0; }
+
+  .sched-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .sched-head h3 { font-size: 1.4rem; }
+  .sched-head label { font-size: .95rem; color: var(--muted); display: flex; align-items: center; gap: .5rem; }
+  select { font: inherit; padding: .45rem 2rem .45rem .8rem; border-radius: 10px; border: 2px solid var(--line); background: #fff; color: var(--ink); }
+  .day { margin-top: 1.4rem; }
+  .day h4 { margin: 0 0 .5rem; font-family: var(--display); font-weight: 600; font-size: 1.05rem; color: var(--blue); }
+  .rows { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+  .row { display: grid; grid-template-columns: 5.5rem 1fr auto; gap: 1rem; align-items: center; padding: .8rem 1rem; border-radius: 16px; background: var(--sky); }
+  .row .time { font-weight: 800; line-height: 1.2; }
+  .row .time small { display: block; font-weight: 600; color: var(--muted); }
+  .row .what p { margin: .25rem 0 0; font-size: .92rem; color: var(--muted); }
+  .chip { display: inline-block; font-weight: 800; font-size: .85rem; padding: .15rem .65rem; border-radius: 999px; margin-right: .35rem; }
+  .row .badge { font-size: .82rem; font-weight: 800; padding: .25rem .7rem; border-radius: 999px; white-space: nowrap; }
+  .badge.live { background: var(--pink); color: #fff; }
+  .badge.cancel { background: #fff; color: #B42346; border: 1.5px solid #F3B7C6; }
+  .badge.soon { background: #fff; color: var(--muted); }
+  .row.is-cancelled .what strong, .row.is-cancelled .time b { text-decoration: line-through; opacity: .6; }
+  .row.is-cancelled { background: #FBF7F8; }
+  .cal-btn { background: none; border: 0; color: var(--blue); font-weight: 700; font-size: .85rem; cursor: pointer; padding: .2rem 0 0; text-decoration: underline; text-underline-offset: 3px; display: block; }
+  .tz { font-size: .85rem; color: var(--muted); margin-top: 1.25rem; }
+  .sched-empty { background: var(--sky); border-radius: 16px; padding: 1.25rem; margin-top: 1.25rem; color: var(--muted); }
+
+  .subj-math { background: var(--t-sun); color: #7A5200; }
+  .subj-sci { background: var(--t-mint); color: #0B6B4E; }
+  .subj-acc { background: var(--t-pink); color: #A3264F; }
+  .subj-fr { background: var(--t-lilac); color: #5438B8; }
+  .subj-other { background: var(--t-blue); color: var(--blue-deep); }
+
+  /* Class options */
+  .formats { background: var(--sky); padding: 3.5rem 0; }
+  .fmt-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.75rem; }
+  .fmt { background: #fff; border-radius: 20px; padding: 1.3rem 1.25rem; }
+  .fmt strong { display: block; font-family: var(--display); font-weight: 600; font-size: 1.25rem; }
+  .fmt span { color: var(--muted); font-size: .95rem; }
+  .fmt i { display: block; width: 36px; height: 6px; border-radius: 3px; margin-bottom: .8rem; }
+
+  /* Subjects */
+  .curricula { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+  .curricula span { font-family: var(--display); font-weight: 600; font-size: 1.1rem; border: 2px solid var(--ink); border-radius: 999px; padding: .35rem 1rem; }
+  .subjects { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+  .subj { border-radius: 22px; padding: 1.5rem 1.25rem; }
+  .subj h3 { font-size: 1.35rem; }
+  .subj p { margin: .4rem 0 0; font-size: .96rem; }
+
+  /* Steps */
+  .steps-sec { background: var(--ink); color: #fff; }
+  .steps-sec h2 { color: #fff; }
+  .steps-sec .lede { color: #C4CCE6; }
+  .steps { list-style: none; padding: 0; margin: 2.75rem 0 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.75rem; counter-reset: step; }
+  .steps li { counter-increment: step; }
+  .steps li::before { content: counter(step); display: grid; place-items: center; width: 2.7rem; height: 2.7rem; border-radius: 50%; background: var(--c, var(--sun)); color: var(--ink); font-family: var(--display); font-weight: 700; font-size: 1.25rem; margin-bottom: 1rem; }
+  .steps h3 { font-size: 1.3rem; margin-bottom: .35rem; }
+  .steps p { margin: 0; color: #C4CCE6; }
+
+  /* Why */
+  .why { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: start; }
+  .why .tagline { font-family: var(--display); font-weight: 600; font-size: 1.35rem; color: var(--blue); margin-top: 1.25rem; }
+  .points { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 2.5rem; }
+  .points h3 { font-size: 1.2rem; margin-bottom: .35rem; display: flex; gap: .5rem; align-items: center; }
+  .points h3 svg { width: 18px; height: 18px; flex: none; }
+  .points p { margin: 0; color: var(--muted); }
+
+  /* FAQ */
+  .faq-sec { padding-top: 0; }
+  .faq { max-width: 48rem; margin-top: 2rem; }
+  details { border-bottom: 2px solid var(--sky); }
+  summary { cursor: pointer; list-style: none; padding: 1.15rem 2rem 1.15rem 0; font-weight: 800; position: relative; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; position: absolute; right: .25rem; top: .85rem; font-size: 1.6rem; font-weight: 600; color: var(--blue); transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { margin: 0 0 1.25rem; color: var(--muted); max-width: 42rem; }
+
+  /* Contact */
+  .contact { background: var(--blue); color: #fff; text-align: center; }
+  .contact h2 { color: #fff; }
+  .contact > .wrap > p { color: #E4EBFF; max-width: 34rem; margin: 1rem auto 2.5rem; }
+  .numbers { display: grid; grid-template-columns: repeat(2, minmax(0, 340px)); justify-content: center; gap: 1.25rem; }
+  .num { background: rgba(255,255,255,.1); border-radius: 22px; padding: 1.5rem 1.25rem; }
+  .num .digits { font-family: var(--display); font-weight: 700; font-size: 1.65rem; color: var(--sun); }
+  .num .actions { justify-content: center; margin-top: 1rem; }
+  .num .btn { padding: .65rem 1.1rem; }
+
+  footer { background: var(--blue-deep); color: #C9D6FF; font-size: .9rem; padding: 1.5rem 0 5.5rem; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+
+  /* Join dialog */
+  dialog { border: 0; border-radius: 24px; padding: 2rem; max-width: 420px; width: calc(100% - 2rem); color: var(--ink); }
+  dialog::backdrop { background: rgba(27,34,64,.55); }
+  dialog h3 { font-size: 1.6rem; }
+  dialog p { color: var(--muted); margin: .5rem 0 1.25rem; }
+  dialog input { width: 100%; font: inherit; font-size: 1.4rem; letter-spacing: .2em; text-transform: uppercase; text-align: center; padding: .7rem; border: 2px solid var(--line); border-radius: 14px; }
+  dialog input:focus { border-color: var(--blue); outline: none; }
+  dialog .msg { min-height: 1.5rem; font-size: .95rem; margin: .75rem 0; color: #B42346; }
+  dialog .actions { justify-content: flex-end; }
+
+  .mobile-bar { display: none; }
+
+  @media (max-width: 980px) {
+    .subjects { grid-template-columns: repeat(3, 1fr); }
+    .steps { grid-template-columns: repeat(3, 1fr); }
+    .live-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 860px) {
+    nav ul { display: none; }
+    .hero-grid, .why { grid-template-columns: 1fr; }
+    .climb { max-width: 480px; }
+    .fmt-grid { grid-template-columns: 1fr 1fr; }
+    .numbers { grid-template-columns: 1fr; }
+    .mobile-bar { display: flex; gap: .5rem; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; padding: .6rem .75rem calc(.6rem + env(safe-area-inset-bottom, 0px)); background: rgba(255,255,255,.97); border-top: 1px solid var(--line); }
+    .mobile-bar .btn { flex: 1; white-space: nowrap; padding: .75rem .6rem; }
+    .mobile-bar .btn-ghost { color: var(--ink); border-color: var(--ink); }
+  }
+  @media (max-width: 560px) {
+    section { padding: 3.5rem 0; }
+    .subjects, .steps, .points { grid-template-columns: 1fr; }
+    .subjects { grid-template-columns: 1fr 1fr; }
+    .header-wa { display: none; }
+    .row { grid-template-columns: 4.6rem 1fr; }
+    .row .state { grid-column: 2; }
+    .countdown div { min-width: 3.6rem; }
+    .countdown b { font-size: 1.6rem; }
+    .next-card { padding: 1.5rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .pop, .status.is-live .dot, .next-pill.is-live .dot { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <path id="star" d="M0,-1 L0.265,-0.364 L0.951,-0.309 L0.428,0.139 L0.588,0.809 L0,0.45 L-0.588,0.809 L-0.428,0.139 L-0.951,-0.309 L-0.265,-0.364Z" stroke-linejoin="round"/>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></symbol>
+    <symbol id="i-call" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m22 8-6 4 6 4V8ZM2 6h14v12H2z"/></symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top">
+      <svg viewBox="-1.15 -1.15 2.3 2.3" aria-hidden="true"><use href="#star" fill="#FFC43D" stroke="#FFC43D" stroke-width=".12"/></svg>
+      Growing Stars
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#live">Live classes</a></li>
+        <li><a href="#subjects">Subjects</a></li>
+        <li><a href="#how">How we work</a></li>
+        <li><a href="#faq">Questions</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-wa btn-small header-wa" data-wa="0" href="#contact"><svg aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp us</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="credential">Well-experienced, MOHRE-licensed tutor<br>Work permit no. <strong>MB323795674AE</strong></div>
+        <h1>Live classes that help every student shine.</h1>
+        <p>Private tutoring for grades 2 to 11, live online or in person. One-to-one or small groups for CBSE, ICSE, British and American curriculum students.</p>
+        <div class="actions">
+          <a class="btn btn-sun" href="#live"><svg aria-hidden="true"><use href="#i-video"/></svg> See live classes</a>
+          <a class="btn btn-ghost" data-wa="0" href="#contact"><svg aria-hidden="true"><use href="#i-wa"/></svg> Chat on WhatsApp</a>
+        </div>
+        <a class="next-pill" id="heroPill" href="#live" hidden><span class="dot"></span><span id="heroPillText"></span></a>
+      </div>
+
+      <svg class="climb" viewBox="0 0 560 380" role="img" aria-label="Stars growing larger from grade 2 to grade 11">
+        <path d="M30 335 C 170 270, 360 170, 520 60" fill="none" stroke="#6F8FF0" stroke-width="2.5" stroke-dasharray="2 9" stroke-linecap="round"/>
+        <g fill="#FFC43D" stroke="#FFC43D" stroke-linejoin="round">
+        <g transform="translate(30 335)"><g class="pop" style="--d:0"><use href="#star" transform="scale(8)" stroke-width=".15" opacity=".78"/></g></g>
+        <g transform="translate(84 293)"><g class="pop" style="--d:1"><use href="#star" transform="scale(11)" stroke-width=".14" opacity=".9"/></g></g>
+        <g transform="translate(139 259)"><g class="pop" style="--d:2"><use href="#star" transform="scale(13)" stroke-width=".13" opacity=".82"/></g></g>
+        <g transform="translate(193 227)"><g class="pop" style="--d:3"><use href="#star" transform="scale(15)" stroke-width=".12" opacity=".85"/></g></g>
+        <g transform="translate(248 197)"><g class="pop" style="--d:4"><use href="#star" transform="scale(18)" stroke-width=".12" opacity=".88"/></g></g>
+        <g transform="translate(302 168)"><g class="pop" style="--d:5"><use href="#star" transform="scale(21)" stroke-width=".11" opacity=".9"/></g></g>
+        <g transform="translate(356 140)"><g class="pop" style="--d:6"><use href="#star" transform="scale(24)" stroke-width=".1" opacity=".86"/></g></g>
+        <g transform="translate(411 113)"><g class="pop" style="--d:7"><use href="#star" transform="scale(26)" stroke-width=".1" opacity=".92"/></g></g>
+        <g transform="translate(465 86)"><g class="pop" style="--d:8"><use href="#star" transform="scale(29)" stroke-width=".1" opacity=".96"/></g></g>
+        <g transform="translate(520 60)"><g class="pop" style="--d:9"><use href="#star" transform="scale(32)" stroke-width=".1"/></g></g>
+        </g>
+        <text x="30" y="362">2</text><text x="84" y="322">3</text><text x="139" y="290">4</text><text x="193" y="260">5</text><text x="248" y="233">6</text>
+        <text x="302" y="207">7</text><text x="356" y="182">8</text><text x="411" y="157">9</text><text x="465" y="133">10</text><text x="520" y="110">11</text>
+        <text class="caption" x="0" y="22">Small steps, big results</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- LIVE CLASSES -->
+  <section id="live" class="live-sec">
+    <div class="wrap">
+      <h2>Live classes</h2>
+      <p class="lede">Classes are taught live online. Parents get an email when a class is scheduled, a reminder with the join link before it starts, and a message straight away if anything changes.</p>
+      <div class="demo-note" id="demoNote" hidden>This is a sample schedule to preview how the page works. Real classes will appear here once the class sheet is connected.</div>
+
+      <div class="live-grid">
+        <div class="next-card" aria-live="polite">
+          <svg class="corner-star" viewBox="-1.1 -1.1 2.2 2.2" aria-hidden="true"><use href="#star" fill="#FFC43D" stroke="#FFC43D" stroke-width=".12"/></svg>
+          <div id="nextBody">
+            <span class="status"><span class="dot"></span>Loading classes</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="sched-head">
+            <h3>Coming up</h3>
+            <label>Show
+              <select id="batchFilter"><option value="all">All classes</option></select>
+            </label>
+          </div>
+          <div id="schedule"></div>
+          <p class="tz" id="tzNote"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="formats">
+    <div class="wrap">
+      <h2>Learn the way that suits your child</h2>
+      <div class="fmt-grid">
+        <div class="fmt"><i style="background:var(--pink)"></i><strong>Live online</strong><span>Join from home on a laptop, tablet or phone</span></div>
+        <div class="fmt"><i style="background:var(--mint)"></i><strong>In person</strong><span>Face-to-face classes, depending on location</span></div>
+        <div class="fmt"><i style="background:var(--sun)"></i><strong>One-to-one</strong><span>Full attention on your child</span></div>
+        <div class="fmt"><i style="background:var(--lilac)"></i><strong>Small groups</strong><span>Learn alongside a few classmates</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="subjects">
+    <div class="wrap">
+      <h2>Curricula and subjects</h2>
+      <p class="lede">Lessons follow your child's school syllabus.</p>
+      <div class="curricula"><span>CBSE</span><span>ICSE</span><span>British curriculum</span><span>American curriculum</span></div>
+      <div class="subjects">
+        <div class="subj subj-math"><h3>Mathematics</h3><p>Number skills, algebra, geometry and more.</p></div>
+        <div class="subj subj-sci"><h3>Science</h3><p>Physics, Chemistry and Biology.</p></div>
+        <div class="subj subj-acc"><h3>Accountancy</h3><p>Concepts, entries and practice problems.</p></div>
+        <div class="subj subj-fr"><h3>French</h3><p>Reading, writing, grammar and speaking.</p></div>
+        <div class="subj subj-other"><h3>And more</h3><p>Other subjects, subject to availability.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="steps-sec">
+    <div class="wrap">
+      <h2>How we work</h2>
+      <p class="lede">Every student follows the same steady path, at their own pace.</p>
+      <ol class="steps">
+        <li style="--c:var(--sun)"><h3>Plan</h3><p>We look at where your child is today and agree on clear goals.</p></li>
+        <li style="--c:var(--mint)"><h3>Study</h3><p>Subject-focused lessons that build clear concepts step by step.</p></li>
+        <li style="--c:var(--pink)"><h3>Practice</h3><p>Worked examples and exercises until each topic feels easy.</p></li>
+        <li style="--c:var(--lilac)"><h3>Improve</h3><p>We revisit weak spots and track progress along the way.</p></li>
+        <li style="--c:#7FA2FF"><h3>Succeed</h3><p>Confident students, ready for tests and exams.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap why">
+      <div>
+        <h2>Why parents choose Growing Stars</h2>
+        <p class="tagline">Better students, brighter tomorrows.</p>
+      </div>
+      <div class="points">
+        <div><h3><svg viewBox="-1.15 -1.15 2.3 2.3" aria-hidden="true"><use href="#star" fill="#FFC43D" stroke="#FFC43D" stroke-width=".15"/></svg>Personal attention</h3><p>One-to-one or small groups mean every question gets answered.</p></div>
+        <div><h3><svg viewBox="-1.15 -1.15 2.3 2.3" aria-hidden="true"><use href="#star" fill="#1FB386" stroke="#1FB386" stroke-width=".15"/></svg>Parents stay informed</h3><p>Emails for new classes, reminders, changes and homework after class.</p></div>
+        <div><h3><svg viewBox="-1.15 -1.15 2.3 2.3" aria-hidden="true"><use href="#star" fill="#FF6F9C" stroke="#FF6F9C" stroke-width=".15"/></svg>Flexible learning support</h3><p>Live online or in person, with timings that fit your family.</p></div>
+        <div><h3><svg viewBox="-1.15 -1.15 2.3 2.3" aria-hidden="true"><use href="#star" fill="#8B6CF0" stroke="#8B6CF0" stroke-width=".15"/></svg>A positive environment</h3><p>Encouraging classes that build confidence along with marks.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="faq-sec">
+    <div class="wrap">
+      <h2>Common questions</h2>
+      <div class="faq">
+        <details><summary>How do live online classes work?</summary><p>Classes are live video lessons. Before each class you'll get an email with the join link and a class code. You can also join from the Live classes section on this page by entering the code.</p></details>
+        <details><summary>What happens if a class is cancelled or moved?</summary><p>You'll get an email as soon as it changes, and the schedule on this page updates to show the new time or the cancellation.</p></details>
+        <details><summary>Is the tutor licensed?</summary><p>Yes. Classes are taught by a well-experienced tutor licensed by MOHRE, work permit no. MB323795674AE.</p></details>
+        <details><summary>What does my child need for online classes?</summary><p>A laptop, tablet or phone with a stable internet connection, a quiet place to sit, and ideally headphones.</p></details>
+        <details><summary>Do you offer in-person classes near me?</summary><p>In-person classes are available depending on your location. Message us with your area and we'll let you know.</p></details>
+        <details><summary>How much are the fees?</summary><p>Fees depend on the grade, subject, and whether you choose one-to-one or small-group, in-person or online classes. Call or message us for details.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Invest in their potential</h2>
+      <p>Call or WhatsApp either number. Tell us your child's grade, curriculum and the subjects they need help with.</p>
+      <div class="numbers">
+        <div class="num">
+          <div class="digits" data-phone-text="0"></div>
+          <div class="actions">
+            <a class="btn btn-wa" data-wa="0" href="#contact"><svg aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp</a>
+            <a class="btn btn-ghost" data-tel="0" href="#contact"><svg aria-hidden="true"><use href="#i-call"/></svg> Call</a>
+          </div>
+        </div>
+        <div class="num">
+          <div class="digits" data-phone-text="1"></div>
+          <div class="actions">
+            <a class="btn btn-wa" data-wa="1" href="#contact"><svg aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp</a>
+            <a class="btn btn-ghost" data-tel="1" href="#contact"><svg aria-hidden="true"><use href="#i-call"/></svg> Call</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Growing Stars. Private tutoring for grades 2 to 11.</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a class="btn btn-sun" href="#live"><svg aria-hidden="true"><use href="#i-video"/></svg> Live classes</a>
+  <a class="btn btn-wa" data-wa="0" href="#contact"><svg aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp</a>
+</div>
+
+<dialog id="joinDialog">
+  <form method="dialog" id="joinForm">
+    <h3>Join your class</h3>
+    <p>Enter the class code from your email. The class opens 15 minutes before it starts.</p>
+    <input id="codeInput" autocomplete="off" maxlength="12" placeholder="CODE" aria-label="Class code">
+    <div class="msg" id="joinMsg" role="status"></div>
+    <div class="actions">
+      <button type="button" class="btn btn-line" id="joinCancel">Close</button>
+      <button type="submit" class="btn btn-sun" id="joinGo"><svg aria-hidden="true"><use href="#i-video"/></svg> Join class</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+/* ==================================================================
+   SETTINGS
+   scriptUrl: paste the Google Apps Script "Web app" URL here once the
+              class sheet is set up (see the setup guide). Leave it
+              empty to show the sample schedule.
+   ================================================================== */
+const CONFIG = {
+  scriptUrl: "",
+  joinOpensMinutesBefore: 15
+};
+const PHONES = [
+  { number: "971505892169", display: "+971 50 589 2169" },
+  { number: "971505892372", display: "+971 50 589 2372" }
+];
+const WHATSAPP_MESSAGE = "Hi Growing Stars, I'd like to know more about tutoring for my child.";
+
+/* ---------- Contact links ---------- */
+document.querySelectorAll("[data-wa]").forEach(a => {
+  a.href = "https://wa.me/" + PHONES[+a.dataset.wa].number + "?text=" + encodeURIComponent(WHATSAPP_MESSAGE);
+  a.target = "_blank"; a.rel = "noopener";
+});
+document.querySelectorAll("[data-tel]").forEach(a => { a.href = "tel:+" + PHONES[+a.dataset.tel].number; });
+document.querySelectorAll("[data-phone-text]").forEach(el => { el.textContent = PHONES[+el.dataset.phoneText].display; });
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ---------- Live classes ---------- */
+const MIN = 60000, HOUR = 60 * MIN, DAY = 24 * HOUR;
+let classes = [], demo = false, filter = "all", loadError = false;
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmtTime = ms => new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "2-digit" }).format(ms);
+const dayKey = ms => new Date(ms).toDateString();
+function dayLabel(ms) {
+  const t = new Date(); t.setHours(0, 0, 0, 0);
+  const d = new Date(ms); d.setHours(0, 0, 0, 0);
+  const diff = Math.round((d - t) / DAY);
+  const date = new Intl.DateTimeFormat(undefined, { weekday: "long", day: "numeric", month: "long" }).format(ms);
+  return diff === 0 ? "Today" : diff === 1 ? "Tomorrow" : date;
+}
+function subjClass(s) {
+  s = String(s).toLowerCase();
+  if (s.includes("math")) return "subj-math";
+  if (/sci|phys|chem|bio/.test(s)) return "subj-sci";
+  if (s.includes("account")) return "subj-acc";
+  if (s.includes("french")) return "subj-fr";
+  return "subj-other";
+}
+function normalise(list) {
+  return list.map(c => {
+    const startMs = Date.parse(c.start);
+    const duration = Number(c.duration) || 60;
+    return { ...c, startMs, duration, endMs: startMs + duration * MIN, cancelled: String(c.status).toLowerCase().startsWith("cancel") };
+  }).filter(c => !isNaN(c.startMs)).sort((a, b) => a.startMs - b.startMs);
+}
+function demoClasses() {
+  const now = Date.now(), round = t => Math.round(t / (15 * MIN)) * 15 * MIN;
+  const at = off => new Date(round(now + off)).toISOString();
+  return [
+    { start: at(-20 * MIN), duration: 60, subject: "Mathematics", batch: "Grade 6", status: "Scheduled", message: "Fractions and decimals, bring your workbook" },
+    { start: at(3 * HOUR), duration: 60, subject: "Science", batch: "Grade 8", status: "Scheduled", message: "" },
+    { start: at(DAY + 2 * HOUR), duration: 45, subject: "French", batch: "Grade 4", status: "Cancelled", message: "Cancelled today. A make-up class will be added this week." },
+    { start: at(DAY + 5 * HOUR), duration: 60, subject: "Accountancy", batch: "Grade 11", status: "Scheduled", message: "" },
+    { start: at(2 * DAY + 3 * HOUR), duration: 60, subject: "Mathematics", batch: "Grade 9", status: "Scheduled", message: "Algebra revision before the unit test" },
+    { start: at(3 * DAY + HOUR), duration: 45, subject: "Science", batch: "Grade 5", status: "Scheduled", message: "" }
+  ];
+}
+const isLive = (c, now = Date.now()) => !c.cancelled && now >= c.startMs - CONFIG.joinOpensMinutesBefore * MIN && now < c.endMs;
+const visible = () => classes.filter(c => filter === "all" || c.batch === filter);
+
+async function loadClasses() {
+  if (!CONFIG.scriptUrl) { demo = true; classes = normalise(demoClasses()); render(); return; }
+  try {
+    const res = await fetch(CONFIG.scriptUrl);
+    const data = await res.json();
+    classes = normalise(data.classes || []);
+    loadError = false;
+  } catch (e) { loadError = true; }
+  render();
+}
+
+function render() {
+  document.getElementById("demoNote").hidden = !demo;
+  // batch filter
+  const sel = document.getElementById("batchFilter");
+  const batches = [...new Set(classes.map(c => c.batch).filter(Boolean))].sort();
+  sel.innerHTML = '<option value="all">All classes</option>' + batches.map(b => `<option ${b === filter ? "selected" : ""}>${esc(b)}</option>`).join("");
+  if (filter !== "all" && !batches.includes(filter)) filter = "all";
+  renderSchedule();
+  renderNext();
+  document.getElementById("tzNote").textContent = "Times are shown in your local time (" + Intl.DateTimeFormat().resolvedOptions().timeZone.replace(/_/g, " ") + ").";
+}
+
+function renderSchedule() {
+  const box = document.getElementById("schedule");
+  const now = Date.now();
+  if (loadError) { box.innerHTML = '<div class="sched-empty">The schedule couldn\'t load just now. Refresh the page, or message us on WhatsApp.</div>'; return; }
+  const list = visible().filter(c => c.endMs > now);
+  if (!list.length) { box.innerHTML = '<div class="sched-empty">No classes are scheduled yet. New classes will show up here, and parents are emailed as soon as they\'re added.</div>'; return; }
+  let html = "", current = "";
+  list.forEach((c, i) => {
+    const k = dayKey(c.startMs);
+    if (k !== current) { if (current) html += "</ul></div>"; current = k; html += `<div class="day"><h4>${esc(dayLabel(c.startMs))}</h4><ul class="rows">`; }
+    const badge = c.cancelled ? '<span class="badge cancel">Cancelled</span>' : isLive(c, now) ? '<span class="badge live">Live now</span>' : '<span class="badge soon">Upcoming</span>';
+    html += `<li class="row ${c.cancelled ? "is-cancelled" : ""}">
+      <div class="time"><b>${fmtTime(c.startMs)}</b><small>${c.duration} min</small></div>
+      <div class="what"><span class="chip ${subjClass(c.subject)}">${esc(c.subject)}</span><strong>${esc(c.batch)}</strong>${c.message ? `<p>${esc(c.message)}</p>` : ""}${c.cancelled ? "" : `<button class="cal-btn" data-cal="${classes.indexOf(c)}">Add to calendar</button>`}</div>
+      <div class="state">${badge}</div></li>`;
+  });
+  box.innerHTML = html + "</ul></div>";
+}
+
+function nextClass() {
+  const now = Date.now();
+  return visible().find(c => !c.cancelled && c.endMs > now);
+}
+
+function renderNext() {
+  const body = document.getElementById("nextBody");
+  const pill = document.getElementById("heroPill");
+  const c = nextClass();
+  if (!c) {
+    body.innerHTML = `<span class="status"><span class="dot"></span>No class right now</span><h3>See you soon</h3><p class="empty">The next class will appear here with a countdown as soon as it's scheduled.</p>`;
+    pill.hidden = true;
+    return;
+  }
+  const live = isLive(c);
+  const when = new Intl.DateTimeFormat(undefined, { weekday: "long", hour: "numeric", minute: "2-digit" }).format(c.startMs);
+  body.innerHTML = `
+    <span class="status ${live ? "is-live" : ""}"><span class="dot"></span>${live ? (Date.now() < c.startMs ? "Class is open" : "Live now") : "Next class"}</span>
+    <h3>${esc(c.subject)}</h3>
+    <p class="meta">${esc(c.batch)}, ${esc(when)}, ${c.duration} min</p>
+    ${c.message ? `<p class="note">${esc(c.message)}</p>` : ""}
+    <div class="countdown" id="countdown" ${live && Date.now() >= c.startMs ? "hidden" : ""}></div>
+    <div class="actions">
+      <button class="btn btn-sun" id="joinBtn" ${live ? "" : "disabled"}><svg aria-hidden="true"><use href="#i-video"/></svg> ${live ? "Join class now" : "Join opens " + CONFIG.joinOpensMinutesBefore + " min before"}</button>
+      <button class="btn btn-line" data-cal="${classes.indexOf(c)}">Add to calendar</button>
+    </div>`;
+  body.dataset.key = c.startMs + "|" + live;
+  if (!demo) {
+    pill.hidden = false;
+    pill.classList.toggle("is-live", live);
+    document.getElementById("heroPillText").textContent = (live ? "Live now: " : "Next live class: ") + c.subject + ", " + c.batch + (live ? "" : ", " + when);
+  }
+  tick();
+}
+
+function tick() {
+  const c = nextClass();
+  const body = document.getElementById("nextBody");
+  if (!c) return;
+  if (body.dataset.key !== c.startMs + "|" + isLive(c)) { renderSchedule(); renderNext(); return; }
+  const el = document.getElementById("countdown");
+  if (!el || el.hidden) return;
+  let s = Math.max(0, Math.floor((c.startMs - Date.now()) / 1000));
+  const d = Math.floor(s / 86400); s %= 86400;
+  const h = Math.floor(s / 3600); s %= 3600;
+  const m = Math.floor(s / 60); s %= 60;
+  const cell = (v, l) => `<div><b>${String(v).padStart(2, "0")}</b><span>${l}</span></div>`;
+  el.innerHTML = (d ? cell(d, d === 1 ? "day" : "days") : "") + cell(h, "hrs") + cell(m, "min") + (d ? "" : cell(s, "sec"));
+}
+
+/* Add to calendar (.ics) */
+function icsDate(ms) { return new Date(ms).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, ""); }
+function downloadIcs(c) {
+  const ics = [
+    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Growing Stars//Classes//EN", "BEGIN:VEVENT",
+    "UID:" + c.startMs + "-" + String(c.batch).replace(/\W/g, "") + "@growingstars",
+    "DTSTAMP:" + icsDate(Date.now()), "DTSTART:" + icsDate(c.startMs), "DTEND:" + icsDate(c.endMs),
+    "SUMMARY:Growing Stars: " + c.subject + " (" + c.batch + ")",
+    "DESCRIPTION:Live class. The join link and class code are emailed before class.",
+    "BEGIN:VALARM", "TRIGGER:-PT15M", "ACTION:DISPLAY", "DESCRIPTION:Class starts soon", "END:VALARM",
+    "END:VEVENT", "END:VCALENDAR"
+  ].join("\r\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }));
+  a.download = "growing-stars-" + String(c.subject).toLowerCase().replace(/\W+/g, "-") + ".ics";
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+/* Join dialog */
+const dlg = document.getElementById("joinDialog");
+const codeInput = document.getElementById("codeInput");
+const joinMsg = document.getElementById("joinMsg");
+function openJoin(code) {
+  joinMsg.textContent = ""; joinMsg.style.color = "";
+  if (code) codeInput.value = code;
+  if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+  codeInput.focus();
+}
+document.getElementById("joinCancel").addEventListener("click", () => dlg.close());
+document.getElementById("joinForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const code = codeInput.value.trim().toUpperCase();
+  if (!code) { joinMsg.textContent = "Enter the class code from your email."; return; }
+  if (demo) { joinMsg.style.color = "var(--muted)"; joinMsg.textContent = "This is the sample schedule. Once the class sheet is connected, this code will open the live class."; return; }
+  joinMsg.style.color = "var(--muted)"; joinMsg.textContent = "Checking your code…";
+  try {
+    const res = await fetch(CONFIG.scriptUrl + "?code=" + encodeURIComponent(code));
+    const data = await res.json();
+    if (data.ok && data.link) { joinMsg.textContent = "Opening your class…"; window.location.href = data.link; }
+    else { joinMsg.style.color = ""; joinMsg.textContent = data.reason || "That code didn't work. Check the code in your email."; }
+  } catch (err) { joinMsg.style.color = ""; joinMsg.textContent = "Couldn't check the code. Use the join link in your email, or message us on WhatsApp."; }
+});
+
+document.addEventListener("click", e => {
+  const cal = e.target.closest("[data-cal]");
+  if (cal) downloadIcs(classes[+cal.dataset.cal]);
+  if (e.target.closest("#joinBtn")) openJoin();
+});
+document.getElementById("batchFilter").addEventListener("change", e => { filter = e.target.value; renderSchedule(); renderNext(); });
+
+loadClasses();
+setInterval(tick, 1000);
+setInterval(loadClasses, 5 * MIN);
+
+const urlCode = new URLSearchParams(location.search).get("code");
+if (urlCode) openJoin(urlCode.toUpperCase());
+</script>
+</body>
+</html>
